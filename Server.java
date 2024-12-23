@@ -27,29 +27,35 @@ public class Server{
                 System.out.println("New client connected: " + clientSocket.getInetAddress());
                 // Create a new thread for the client
                 ClientHandler clientHandler = new ClientHandler(clientSocket);
-
+                Thread clientThread = new Thread(clientHandler);
+                clientThread.start();
             }
-
         }
-        catch(){
-            
+        catch(IOException e)
+        {
+            System.out.println("Error: " + e);
         }
-
 
     }
 }
 
 // ClientHandler
-class ClientHandler {
+class ClientHandler implements Runnable{
 
     private Socket clientSocket;
 
     public ClientHandler(Socket clienSocket){
         this.clientSocket = clientSocket;
     }
+
+    @Override
+    public void run(){
+
+    }
 }
+
 // Shell
 class Shell{
-    
+
 }
 
