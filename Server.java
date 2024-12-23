@@ -2,6 +2,24 @@ import java.io.*;
 import java.net.*;
 
 // Server
+// 터미널 서버 (웹 서버 아님) --- 클라이언트 쌍방향 통신 
+// 클라이언트가 서버에 접속할 떄 로그인/패스워드를 입력하고 서버에서는 이것을 확인하고 접속을 허용할건지 결정
+// 클라이언트가 서버에 접속되면 서버 안에 있는 Shell.java가 실행되어 클라이언트가 명령어를 입력할 수 있게 해줌
+// 그 결과를 클라이언트에게 보내줌.
+// Ex) ls, touch ....
+// ls ----> LICENSE README.md Server.java
+// touch newfile.txt ---> ls ----> LICENSE README.md Server.java newfile.txt
+//
+//
+//   Server ------------------------- Client
+//           Connection Established
+//               Login/Password
+//            Connection Accepted
+//
+//   Server ------ Shell.java(실행) ------> Client
+//   Server <----- Shell.java(명령) ------ Client
+//   Server ------ Shell.java(결과) ------> Client
+//   서버는 로그확인 가능할 수 있도록 로그 프린트
 
 public class Server{
 
@@ -35,7 +53,7 @@ public class Server{
         {
             System.out.println("Error: " + e);
         }
-
+        
     }
 }
 
